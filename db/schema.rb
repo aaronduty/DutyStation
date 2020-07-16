@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_193955) do
+ActiveRecord::Schema.define(version: 2020_07_16_184447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_193955) do
     t.string "abbreviation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order", default: 0
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_04_01_193955) do
     t.bigint "project_id"
     t.bigint "status_id"
     t.integer "priority", default: 1
+    t.integer "order", default: 0
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["status_id"], name: "index_tasks_on_status_id"
     t.index ["task_id"], name: "index_tasks_on_task_id"
