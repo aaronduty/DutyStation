@@ -1,0 +1,19 @@
+
+RACK_ENV=development
+RAILS_ENV=development
+
+DATABASE_URL=postgres://localhost:5432/dutystation?encoding=utf8&pool=5
+
+# puma options
+RAILS_MIN_THREADS=1
+RAILS_MAX_THREADS=3
+WEB_CONCURRENCY=1
+PORT=3501
+
+# Log Options
+#   Add a value if running via Docker locally.
+RAILS_LOG_TO_STDOUT=true
+
+# Rails log level.
+#   Accepted values: debug, info, warn, error, fatal, or unknown
+LOG_LEVEL=debug
