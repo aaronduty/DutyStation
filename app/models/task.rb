@@ -5,5 +5,5 @@ class Task < ApplicationRecord
 
   has_many :tasks
 
-  enum priority: { Low: 0, Medium: 1, High: 2 }
+  enum priority: { LOW: 0, MEDIUM: 1, HIGH: 2 }
 end

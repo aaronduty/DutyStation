@@ -1,16 +1,17 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :update, :destroy ]
   def index
-    render json: Project.sorted
+    projects = ProjectBlueprint.render Project.sorted
+    render json: projects
   end
 
   def show
-    render json: @project
+    render json: ProjectBlueprint.render(@project, view: :extended)
   end
 
   def create
     if @project = Project.create(project_params)
-      render json: @project, status: :created
+      render json: ProjectBlueprint.render(@project), status: :created
     else
       render json: { errors: @project.errors.full_messages }, status: :bad_request
     end
@@ -18,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      render json: @project
+      render json: ProjectBlueprint.render(@project)
     else
       render json: { errors: @project.errors.full_messages }, status: :bad_request
     end
@@ -35,6 +36,6 @@ private
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.includes(:statuses).find(params[:id])
   end
 end
