@@ -25,6 +25,27 @@ class StatusesController < ApplicationController
     end
   end
 
+  def update_order
+    begin
+      status_ids = status_order_params[:ids_in_order]
+      statuses = Status.where(id: status_ids).order(:order)
+
+      ids_difference = status_ids - statuses.pluck(:id)
+      if ids_difference.length > 0
+        raise "Unknown column detected"
+      end
+
+      # TODO: check for id not sent in ids_in_order
+
+      statuses.each do |status|
+        status.update(order: status_ids.find_index(status.id))
+      end
+      render json: statuses.reload.map {|status| StatusBlueprint.render(status) }
+    rescue Exception => e
+      render json: e, status: :bad_request
+    end
+  end
+
   def destroy
     @status.destroy
     render status: :no_content
@@ -33,6 +54,10 @@ class StatusesController < ApplicationController
 private
   def status_params
     params.require(:status).permit(:id, :name, :order, :project_id)
+  end
+
+  def status_order_params
+    params.permit(:project_id, ids_in_order: [])
   end
 
   def set_status
