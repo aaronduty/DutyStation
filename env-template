@@ -2,11 +2,11 @@
 RACK_ENV=development
 RAILS_ENV=development
 
-DATABASE_URL=postgres://localhost:5432/dutystation?encoding=utf8&pool=5
+DATABASE_URL=postgres://localhost:5000/dutystation?encoding=utf8&pool=5
 
 # puma options
 RAILS_MIN_THREADS=1
-RAILS_MAX_THREADS=3
+RAILS_MAX_THREADS=5
 WEB_CONCURRENCY=1
 PORT=3501
 
@@ -17,3 +17,6 @@ RAILS_LOG_TO_STDOUT=true
 # Rails log level.
 #   Accepted values: debug, info, warn, error, fatal, or unknown
 LOG_LEVEL=debug
+
+# run `bin/rails secret and replace the value below
+secret_key_base=please_replace_this
