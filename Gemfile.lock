@@ -94,7 +94,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     oj (3.10.6)
     pg (1.2.3)
-    puma (4.3.5)
+    puma (5.1.1)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -162,7 +162,7 @@ DEPENDENCIES
   listen (~> 3.2)
   oj
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 5.0)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
   spring
